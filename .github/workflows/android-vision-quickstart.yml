@@ -23,3 +23,10 @@ jobs:
       - name: Build and Test vision-quickstart
         working-directory: android/vision-quickstart
         run: chmod +x gradlew && ./gradlew build
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vision-quickstart-apk
+          path: android/vision-quickstart/app/build/outputs/apk/**/*.apk
+          retention-days: 14
