@@ -1,0 +1,32 @@
+name: Android Vision Quickstart Build
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build and Test vision-quickstart
+        working-directory: android/vision-quickstart
+        run: chmod +x gradlew && ./gradlew build
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vision-quickstart-apk
+          path: android/vision-quickstart/app/build/outputs/apk/**/*-debug.apk
+          retention-days: 14
