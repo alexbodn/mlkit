@@ -28,5 +28,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: vision-quickstart-apk
-          path: android/vision-quickstart/app/build/outputs/apk/**/*.apk
+          path: android/vision-quickstart/app/build/outputs/apk/**/*-debug.apk
           retention-days: 14
